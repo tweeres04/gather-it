@@ -1,7 +1,7 @@
 # Possible next steps
 
 - Add more control to the workers
-- Add more resources farther away
+- Add more resources farther away ✅
 - Build more workers
 - Worker upgrades
   - Increased speed
