@@ -147,24 +147,6 @@ public class Worker : MonoBehaviour
         return false;
     }
 
-    public void SetTarget(Mineral mineral)
-    {
-        var allWorkers = FindObjectsOfType<Worker>();
-        if (allWorkers.Any(w => w.target == mineral))
-        {
-            findNearestUntargetedMineral();
-        }
-        else
-        {
-            target = mineral;
-        }
-
-        if (state != State.Delivering)
-        {
-            state = State.MovingToTarget;
-        }
-    }
-
     public static void UpgradeSpeed()
     {
         speed += speedUpgradeAmount;

@@ -14,15 +14,6 @@ public class Mineral : MonoBehaviour
         return GameObject.FindGameObjectsWithTag(mineralTag).Select(go => go.GetComponent<Mineral>());
     }
 
-    public void OnMouseDown()
-    {
-        var workers = GameObject.FindGameObjectsWithTag(workerTag);
-        foreach (var worker in workers)
-        {
-            worker.GetComponent<Worker>().SetTarget(this);
-        }
-    }
-
     public int takeMinerals(int mineralsToTake)
     {
         var mineralsTaken = Mathf.Min(mineralsToTake, minerals);
