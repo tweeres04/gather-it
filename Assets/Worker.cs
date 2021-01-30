@@ -13,8 +13,9 @@ public class Worker : MonoBehaviour
         Delivering,
     }
 
-    private float turnSpeed = 5;
-    private float speed = 5;
+    private float turnSpeed = 5f;
+    private static float speed = 5f;
+    private static float speedUpgradeAmount = 2.5f;
     private Color startColor;
     private bool isSelected;
     private bool isHovered;
@@ -152,5 +153,10 @@ public class Worker : MonoBehaviour
         {
             state = State.MovingToTarget;
         }
+    }
+
+    public static void UpgradeSpeed()
+    {
+        speed += speedUpgradeAmount;
     }
 }

@@ -6,6 +6,7 @@ public class Base : MonoBehaviour
 {
     public static Base instance;
     public int minerals = 0;
+    public int totalMineralsCollected = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Base : MonoBehaviour
     public void DepositMinerals(int minerals)
     {
         this.minerals += minerals;
+        this.totalMineralsCollected += minerals;
     }
 
     public int getTotalMinerals()

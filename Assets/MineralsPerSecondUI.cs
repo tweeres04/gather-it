@@ -16,8 +16,8 @@ public class MineralsPerSecondUI : MonoBehaviour
 
     void UpdateText()
     {
-        var minerals = Base.instance.minerals;
-        var mineralsThisSecond = (Base.instance.minerals - lastMinerals);
+        var minerals = Base.instance.totalMineralsCollected;
+        var mineralsThisSecond = (minerals - lastMinerals);
         mpsHistory.Add(mineralsThisSecond);
 
         if (mpsHistory.Count >= historyLength)

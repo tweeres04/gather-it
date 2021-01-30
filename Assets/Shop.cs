@@ -11,10 +11,15 @@ public class Shop : MonoBehaviour
 
     private int workerCost = 10;
 
+    public int workerSpeedCost = 100;
+
+    public static Shop instance;
+
     void Awake()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("spawnPoint").Select(go => go.transform).ToArray();
         spawnPoint = spawnPoints[0];
+        instance = this;
     }
     public void BuildWorker()
     {
@@ -25,6 +30,16 @@ public class Shop : MonoBehaviour
             newWorker.GetComponent<Worker>().findNearestUntargetedMineral();
             spawnPoint = spawnPoints[spawnPointIndex % 4];
             spawnPointIndex += 1;
+        }
+    }
+
+    public void UpgradeWorkerSpeed()
+    {
+        if (Base.instance.minerals >= workerSpeedCost)
+        {
+            Base.instance.minerals -= workerSpeedCost;
+            Worker.UpgradeSpeed();
+            workerSpeedCost = (int)Mathf.Round(workerSpeedCost * 1.5f);
         }
     }
 }
