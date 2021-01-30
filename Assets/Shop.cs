@@ -4,6 +4,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public GameObject workerPrefab;
+    public Transform workersGroup;
     private Transform[] spawnPoints = new Transform[4];
     private Transform spawnPoint;
     private int spawnPointIndex = 0;
@@ -20,7 +21,8 @@ public class Shop : MonoBehaviour
         if (Base.instance.minerals >= workerCost)
         {
             Base.instance.minerals -= workerCost;
-            Instantiate(workerPrefab, spawnPoint.position, Quaternion.identity);
+            var newWorker = Instantiate(workerPrefab, spawnPoint.position, Quaternion.identity, workersGroup);
+            newWorker.GetComponent<Worker>().findNearestUntargetedMineral();
             spawnPoint = spawnPoints[spawnPointIndex % 4];
             spawnPointIndex += 1;
         }

@@ -4,7 +4,6 @@ using System.Linq;
 public class Worker : MonoBehaviour
 {
     private string workerTag = "worker";
-    private string mineralTag = "mineral";
 
     private enum State
     {
@@ -80,19 +79,20 @@ public class Worker : MonoBehaviour
                 }
 
             case State.Idle:
-            default:
-                // Don't do anything
+                if (target)
+                {
+                    state = State.MovingToTarget;
+                }
                 break;
+            default:
+                throw new System.Exception("Unhandled state!");
         }
     }
 
     public void findNearestUntargetedMineral()
     {
-        var minerals = GameObject.FindGameObjectsWithTag(mineralTag);
         var workers = GameObject.FindGameObjectsWithTag(workerTag);
-        var mineralsWithoutTarget = minerals.Select(
-            go => go.GetComponent<Mineral>()
-        ).Where(
+        var mineralsWithoutTarget = Mineral.findAllMinerals().Where(
             m => m != target &&
             !workers.Select(
                 go => go.GetComponent<Worker>()
@@ -138,7 +138,16 @@ public class Worker : MonoBehaviour
 
     public void SetTarget(Mineral mineral)
     {
-        target = mineral;
+        var allWorkers = FindObjectsOfType<Worker>();
+        if (allWorkers.Any(w => w.target == mineral))
+        {
+            findNearestUntargetedMineral();
+        }
+        else
+        {
+            target = mineral;
+        }
+
         if (state != State.Delivering)
         {
             state = State.MovingToTarget;

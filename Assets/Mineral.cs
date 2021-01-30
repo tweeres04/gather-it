@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 public class Mineral : MonoBehaviour
 {
     private string workerTag = "worker";
+    public static string mineralTag = "mineral";
 
     public int minerals;
+
+    public static IEnumerable<Mineral> findAllMinerals()
+    {
+        return GameObject.FindGameObjectsWithTag(mineralTag).Select(go => go.GetComponent<Mineral>());
+    }
 
     public void OnMouseDown()
     {
