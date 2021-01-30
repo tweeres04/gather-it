@@ -12,7 +12,7 @@ public class Mineral : MonoBehaviour
         var workers = GameObject.FindGameObjectsWithTag(workerTag);
         foreach (var worker in workers)
         {
-            worker.GetComponent<Worker>().Gather(this);
+            worker.GetComponent<Worker>().SetTarget(this);
         }
     }
 

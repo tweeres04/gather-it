@@ -21,7 +21,6 @@ public class Base : MonoBehaviour
     public void DepositMinerals(int minerals)
     {
         this.minerals += minerals;
-        print("Total minerals: " + this.minerals);
     }
 
     public int getTotalMinerals()

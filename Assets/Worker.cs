@@ -53,61 +53,63 @@ public class Worker : MonoBehaviour
             rend.material.color = startColor;
         }
 
-        if (state == State.MovingToTarget)
+        switch (state)
         {
-            if (target != null)
-            {
-                var reachedDestination = MoveTo(target.transform);
-                if (reachedDestination)
+            case State.MovingToTarget:
+                if (target != null)
                 {
-                    var allWorkers = FindObjectsOfType<Worker>();
-                    if (!allWorkers.Any(w => w.target == target && w.state == State.Gathering))
+                    var reachedDestination = MoveTo(target.transform);
+                    if (reachedDestination)
                     {
-                        print("starting to gather");
-                        state = State.Gathering;
-                        gatherCountdown = gatherTime;
-                        return;
-                    }
-                    else
-                    {
-                        print("someone else gathering this mineral");
-                        findNearestUntargetedMineral();
+                        var allWorkers = FindObjectsOfType<Worker>();
+                        if (!allWorkers.Any(w => w.target == target && w.state == State.Gathering))
+                        {
+                            state = State.Gathering;
+                            gatherCountdown = gatherTime;
+                            return;
+                        }
+                        else
+                        {
+                            findNearestUntargetedMineral();
+                        }
                     }
                 }
-            }
-            else
-            {
-                throw new System.Exception("State.MovingToTarget with no target");
-            }
-        }
-        else if (state == State.Gathering)
-        {
-            gatherCountdown -= Time.deltaTime;
-            if (gatherCountdown <= 0f)
-            {
-                mineralsHeld = target.takeMinerals();
-                state = State.Delivering;
-            }
-        }
-        else if (state == State.Delivering)
-        {
-            var reachedDestination = MoveTo(Base.instance.transform);
-            if (reachedDestination)
-            {
-                Base.instance.DepositMinerals(mineralsHeld);
-                state = State.MovingToTarget;
-                return;
-            }
-        }
-        else if (state == State.Idle)
-        {
-            // Don't do anything
+                else
+                {
+                    throw new System.Exception("State.MovingToTarget with no target");
+                }
+                break;
+
+            case State.Gathering:
+                gatherCountdown -= Time.deltaTime;
+                if (gatherCountdown <= 0f)
+                {
+                    mineralsHeld = target.takeMinerals();
+                    state = State.Delivering;
+                }
+                break;
+
+            case State.Delivering:
+                {
+                    var reachedDestination = MoveTo(Base.instance.transform);
+                    if (reachedDestination)
+                    {
+                        Base.instance.DepositMinerals(mineralsHeld);
+                        state = State.MovingToTarget;
+                        return;
+                    }
+                    break;
+                }
+
+            case State.Idle:
+            default:
+                // Don't do anything
+                break;
         }
     }
 
     public void findNearestUntargetedMineral()
     {
-        print("finding nearest mineral");
         var minerals = GameObject.FindGameObjectsWithTag(mineralTag);
         var workers = GameObject.FindGameObjectsWithTag(workerTag);
         var mineralsWithoutTarget = minerals.Select(
@@ -156,9 +158,12 @@ public class Worker : MonoBehaviour
         return false;
     }
 
-    public void Gather(Mineral mineral)
+    public void SetTarget(Mineral mineral)
     {
         target = mineral;
-        state = State.MovingToTarget;
+        if (state != State.Delivering)
+        {
+            state = State.MovingToTarget;
+        }
     }
 }
