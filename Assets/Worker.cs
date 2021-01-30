@@ -19,7 +19,8 @@ public class Worker : MonoBehaviour
     private Color startColor;
     private bool isSelected;
     private bool isHovered;
-    private float gatherTime = 3f;
+    private static float gatherTime = 3f;
+    private static float gatherTimeUpgradeFactor = 0.25f;
     private float gatherCountdown = 0f;
 
     private int mineralsHeld = 0;
@@ -30,6 +31,11 @@ public class Worker : MonoBehaviour
     private State state = State.Idle;
 
     public Mineral target = null;
+
+    void Awake()
+    {
+        findNearestUntargetedMineral();
+    }
 
     void Update()
     {
@@ -57,7 +63,7 @@ public class Worker : MonoBehaviour
                 }
                 else
                 {
-                    throw new System.Exception("State.MovingToTarget with no target");
+                    Debug.LogWarning("State.MovingToTarget with no target");
                 }
                 break;
 
@@ -168,5 +174,10 @@ public class Worker : MonoBehaviour
     {
         minGatherAmount += gatherUpgradeAmount;
         maxGatherAmount += gatherUpgradeAmount;
+    }
+
+    public static void UpgradeGatherTime()
+    {
+        gatherTime -= Mathf.Max(0, gatherTimeUpgradeFactor);
     }
 }
