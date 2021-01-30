@@ -23,6 +23,9 @@ public class Worker : MonoBehaviour
     private float gatherCountdown = 0f;
 
     private int mineralsHeld = 0;
+    private static int minGatherAmount = 1;
+    private static int maxGatherAmount = 5;
+    private static int gatherUpgradeAmount = 1;
 
     private State state = State.Idle;
 
@@ -62,7 +65,8 @@ public class Worker : MonoBehaviour
                 gatherCountdown -= Time.deltaTime;
                 if (gatherCountdown <= 0f)
                 {
-                    mineralsHeld = target.takeMinerals();
+                    var mineralsToTake = Random.Range(minGatherAmount, maxGatherAmount);
+                    mineralsHeld = target.takeMinerals(mineralsToTake);
                     state = State.Delivering;
                 }
                 break;
@@ -158,5 +162,11 @@ public class Worker : MonoBehaviour
     public static void UpgradeSpeed()
     {
         speed += speedUpgradeAmount;
+    }
+
+    public static void UpgradeGatherAmount()
+    {
+        minGatherAmount += gatherUpgradeAmount;
+        maxGatherAmount += gatherUpgradeAmount;
     }
 }

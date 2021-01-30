@@ -5,7 +5,7 @@ public class UpgradeWorkerSpeedText : MonoBehaviour
 {
     void Update()
     {
-        var workerSpeedUpgradeCost = Shop.instance.workerSpeedCost;
+        var workerSpeedUpgradeCost = Shop.instance.GetWorkerSpeedCost();
         GetComponent<Text>().text = string.Format("Upgrade worker speed ({0} minerals)", workerSpeedUpgradeCost);
     }
 }

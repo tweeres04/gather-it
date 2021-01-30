@@ -11,7 +11,10 @@ public class Shop : MonoBehaviour
 
     private int workerCost = 10;
 
-    public int workerSpeedCost = 100;
+    private int workerSpeedCost = 50;
+    private int workerGatherAmountCost = 50;
+
+    private float costIncreaseFactor = 1.5f;
 
     public static Shop instance;
 
@@ -39,7 +42,27 @@ public class Shop : MonoBehaviour
         {
             Base.instance.minerals -= workerSpeedCost;
             Worker.UpgradeSpeed();
-            workerSpeedCost = (int)Mathf.Round(workerSpeedCost * 1.5f);
+            workerSpeedCost = (int)Mathf.Round(workerSpeedCost * costIncreaseFactor);
         }
+    }
+
+    public void UpgradeWorkerGatherAmount()
+    {
+        if (Base.instance.minerals >= workerGatherAmountCost)
+        {
+            Base.instance.minerals -= workerGatherAmountCost;
+            Worker.UpgradeGatherAmount();
+            workerGatherAmountCost = (int)Mathf.Round(workerGatherAmountCost * costIncreaseFactor);
+        }
+    }
+
+    public int GetWorkerSpeedCost()
+    {
+        return workerSpeedCost;
+    }
+
+    public int GetWorkerGatherAmountCost()
+    {
+        return workerGatherAmountCost;
     }
 }

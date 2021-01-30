@@ -23,9 +23,9 @@ public class Mineral : MonoBehaviour
         }
     }
 
-    public int takeMinerals()
+    public int takeMinerals(int mineralsToTake)
     {
-        var mineralsTaken = Mathf.Min(Random.Range(1, 5), minerals);
+        var mineralsTaken = Mathf.Min(mineralsToTake, minerals);
         minerals -= mineralsTaken;
         if (minerals <= 0)
         {
