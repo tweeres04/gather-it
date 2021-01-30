@@ -6,6 +6,7 @@ TagManager:
   tags:
   - worker
   - mineral
+  - spawnPoint
   layers:
   - Default
   - TransparentFX

@@ -106,6 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702393ecebe8fd14cbe0d60763e7ee79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.34531865, g: 0.57367647, b: 0.754717, a: 1}
-  homeBase: {fileID: 6339187868610390539, guid: 35618ec9f77223a4a89c830b83af48cd,
-    type: 3}
+  target: {fileID: 0}

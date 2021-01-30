@@ -5,9 +5,6 @@ public class Worker : MonoBehaviour
 {
     private string workerTag = "worker";
     private string mineralTag = "mineral";
-    static int instanceCount = 0;
-
-    private int id;
 
     private enum State
     {
@@ -17,11 +14,8 @@ public class Worker : MonoBehaviour
         Delivering,
     }
 
-    public Color hoverColor = new Color(89, 146, 192);
-
     private float turnSpeed = 5;
     private float speed = 5;
-    private Renderer rend;
     private Color startColor;
     private bool isSelected;
     private bool isHovered;
@@ -34,24 +28,8 @@ public class Worker : MonoBehaviour
 
     public Mineral target = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        id = ++instanceCount;
-        rend = GetComponent<Renderer>();
-        startColor = rend.material.color;
-    }
-
     void Update()
     {
-        if (isSelected || isHovered)
-        {
-            rend.material.color = hoverColor;
-        }
-        else
-        {
-            rend.material.color = startColor;
-        }
 
         switch (state)
         {
