@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
+using System.Linq;
 
 public class Mineral : MonoBehaviour
 {
@@ -22,6 +22,13 @@ public class Mineral : MonoBehaviour
         minerals -= mineralsTaken;
         if (minerals <= 0)
         {
+            var workersTargetingMe = GameObject.FindGameObjectsWithTag(workerTag)
+                .Select(go => go.GetComponent<Worker>())
+                .Where(w => w.target == this);
+            foreach (var worker in workersTargetingMe)
+            {
+                worker.findNearestUntargetedMineral();
+            }
             Destroy(gameObject);
         }
         return mineralsTaken;

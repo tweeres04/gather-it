@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 442071739463421165}
   m_Layer: 0
   m_Name: Mineral
-  m_TagString: Untagged
+  m_TagString: mineral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,3 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf8d178163df0e4eaaa01ccee963f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minerals: 0

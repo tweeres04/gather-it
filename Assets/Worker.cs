@@ -3,6 +3,8 @@ using System.Linq;
 
 public class Worker : MonoBehaviour
 {
+    private string workerTag = "worker";
+    private string mineralTag = "mineral";
     static int instanceCount = 0;
 
     private int id;
@@ -30,7 +32,7 @@ public class Worker : MonoBehaviour
 
     private State state = State.Idle;
 
-    private Mineral target = null;
+    public Mineral target = null;
 
     // Start is called before the first frame update
     void Start()
@@ -103,12 +105,21 @@ public class Worker : MonoBehaviour
         }
     }
 
-    void findNearestUntargetedMineral()
+    public void findNearestUntargetedMineral()
     {
         print("finding nearest mineral");
-        Mineral[] minerals = FindObjectsOfType<Mineral>();
-        Worker[] workers = FindObjectsOfType<Worker>();
-        var mineralsWithoutTarget = minerals.Where(m => m != target && !workers.Any(w => w.target == m));
+        var minerals = GameObject.FindGameObjectsWithTag(mineralTag);
+        var workers = GameObject.FindGameObjectsWithTag(workerTag);
+        var mineralsWithoutTarget = minerals.Select(
+            go => go.GetComponent<Mineral>()
+        ).Where(
+            m => m != target &&
+            !workers.Select(
+                go => go.GetComponent<Worker>()
+            ).Any(
+                w => w.target == m
+            )
+        );
         float shortestDistance = Mathf.Infinity;
         Mineral nearestMineral = null;
         foreach (Mineral mineral in mineralsWithoutTarget)
