@@ -16,7 +16,6 @@ https://tweeres04.github.io/gather-it/
 
 # Possible next steps
 
-- Level complete screen with time
 - High scores?
 - Add more control to the workers?
   - Maybe not, no direct control is a fun constraint
@@ -39,6 +38,7 @@ https://tweeres04.github.io/gather-it/
 
 # Done
 
+- Level complete screen with time ✅
 - Fix bug where you can't click build worker
 - Show a mineral being held when delivering ✅
 - [Build bases](bases.md) ✅

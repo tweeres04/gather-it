@@ -3,8 +3,8 @@ using System.Linq;
 
 public class Worker : MonoBehaviour
 {
-    private string workerTag = "worker";
-    private string baseTag = "base";
+    private static string workerTag = "worker";
+    private static string baseTag = "base";
 
     private enum State
     {
@@ -67,6 +67,7 @@ public class Worker : MonoBehaviour
                 else
                 {
                     Debug.LogWarning("State.MovingToTarget with no target");
+                    state = State.Idle;
                 }
                 break;
 
@@ -106,6 +107,16 @@ public class Worker : MonoBehaviour
         }
     }
 
+
+    public static bool areAllWorkersIdle()
+    {
+        var workers = GameObject.FindGameObjectsWithTag(workerTag).Select(w => w.GetComponent<Worker>());
+        var totalWorkers = workers.Count();
+
+        var idleWorkersCount = workers.Count(w => w.state == State.Idle);
+
+        return totalWorkers == idleWorkersCount;
+    }
     void destroyHeldMineral()
     {
         var heldMineral = transform.GetChild(0);

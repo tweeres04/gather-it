@@ -6,10 +6,8 @@ public class MineralsLeftUI : MonoBehaviour
 {
     void Update()
     {
-        var minerals = Mineral
-            .findAllMinerals()
-            .Sum(mineral => mineral.minerals);
+        var mineralsLeft = Mineral.GetMineralsLeft();
 
-        GetComponent<Text>().text = string.Format("{0} minerals left", minerals);
+        GetComponent<Text>().text = string.Format("{0} minerals left", mineralsLeft);
     }
 }

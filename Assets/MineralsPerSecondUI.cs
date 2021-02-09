@@ -16,18 +16,21 @@ public class MineralsPerSecondUI : MonoBehaviour
 
     void UpdateText()
     {
-        var minerals = Base.instance.totalMineralsCollected;
-        var mineralsThisSecond = (minerals - lastMinerals);
-        mpsHistory.Add(mineralsThisSecond);
-
-        if (mpsHistory.Count >= historyLength)
+        if (!Base.instance.isGameOver())
         {
-            mpsHistory.RemoveAt(0);
+            var minerals = Base.instance.totalMineralsCollected;
+            var mineralsThisSecond = (minerals - lastMinerals);
+            mpsHistory.Add(mineralsThisSecond);
+
+            if (mpsHistory.Count >= historyLength)
+            {
+                mpsHistory.RemoveAt(0);
+            }
+
+            var mineralsPerSecond = mpsHistory.Average();
+            GetComponent<Text>().text = string.Format("{0:F1} MPS", mineralsPerSecond);
+
+            lastMinerals = minerals;
         }
-
-        var mineralsPerSecond = mpsHistory.Average();
-        GetComponent<Text>().text = string.Format("{0:F1} MPS", mineralsPerSecond);
-
-        lastMinerals = minerals;
     }
 }

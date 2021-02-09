@@ -14,6 +14,14 @@ public class Mineral : MonoBehaviour
         return GameObject.FindGameObjectsWithTag(mineralTag).Select(go => go.GetComponent<Mineral>());
     }
 
+    public static int GetMineralsLeft()
+    {
+        var mineralsLeft = findAllMinerals()
+            .Sum(mineral => mineral.minerals);
+
+        return mineralsLeft;
+    }
+
     public int takeMinerals(int mineralsToTake)
     {
         var mineralsTaken = Mathf.Min(mineralsToTake, minerals);
