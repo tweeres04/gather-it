@@ -12,13 +12,14 @@ https://tweeres04.github.io/gather-it/
 
 # Currently working on
 
--
+- [Build bases](bases.md)
 
 # Possible next steps
 
+- Level complete screen with time
+- High scores?
 - Add more control to the workers?
   - Maybe not, no direct control is a fun constraint
-- Build more bases
 - Show a mineral being held when delivering
 - Show what level each upgrade is at
 - Collapse upgrades into one great upgrade?
