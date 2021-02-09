@@ -16,12 +16,6 @@ https://tweeres04.github.io/gather-it/
 
 # Possible next steps
 
-- High scores?
-- Add more control to the workers?
-  - Maybe not, no direct control is a fun constraint
-- Show what level each upgrade is at
-- Collapse upgrades into one great upgrade?
-  - Would be in line with the focus on simplicity
 - Improve AI
   - Allow for more than one worker on a mineral patch
 - Levels
@@ -35,6 +29,19 @@ https://tweeres04.github.io/gather-it/
   - Other themes?
   - Small world graphics style?
 - Different types of workers?
+- "skills"?
+  - Cast an area effect
+    - Could upgrade all workers' speed in the area
+    - Increase gather amounts
+- Different types of resources?
+  - How do you prioritize one over the other?
+  - Different worker types collect different resources?
+- High scores?
+- Add more control to the workers?
+  - Maybe not, no direct control is a fun constraint
+- Show what level each upgrade is at
+- Collapse upgrades into one great upgrade?
+  - Would be in line with the focus on simplicity
 
 # Done
 
