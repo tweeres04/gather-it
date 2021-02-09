@@ -6999,7 +6999,7 @@ PrefabInstance:
     - target: {fileID: 4731915657854207703, guid: 3bab9bdf8e505c64a90e041438a0bbd8,
         type: 3}
       propertyPath: m_Text
-      value: Build base (100 minerals)
+      value: Build base (50 minerals)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bab9bdf8e505c64a90e041438a0bbd8, type: 3}

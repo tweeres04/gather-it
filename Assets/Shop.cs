@@ -12,7 +12,7 @@ public class Shop : MonoBehaviour
     private State state = State.Normal;
     public GameObject basePrefab;
     public Transform basesGroup;
-    private int baseCost = 100;
+    private int baseCost = 50;
     private GameObject baseGhost;
 
     public GameObject workerPrefab;
@@ -21,9 +21,9 @@ public class Shop : MonoBehaviour
     private Transform spawnPoint;
     private int spawnPointIndex = 0;
     private int workerCost = 10;
-    private int workerSpeedCost = 50;
-    private int workerGatherAmountCost = 50;
-    private int workerGatherTimeCost = 50;
+    private int workerSpeedCost = 25;
+    private int workerGatherAmountCost = 25;
+    private int workerGatherTimeCost = 25;
 
     private float costIncreaseFactor = 1.5f;
 
