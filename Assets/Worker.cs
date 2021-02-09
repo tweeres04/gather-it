@@ -28,6 +28,7 @@ public class Worker : MonoBehaviour
     private static int minGatherAmount = 1;
     private static int maxGatherAmount = 5;
     private static int gatherUpgradeAmount = 1;
+    public GameObject heldMineralPrefab;
 
     private State state = State.Idle;
 
@@ -76,6 +77,7 @@ public class Worker : MonoBehaviour
                     var mineralsToTake = Random.Range(minGatherAmount, maxGatherAmount);
                     mineralsHeld = target.takeMinerals(mineralsToTake);
                     findNearestBase();
+                    instantiateHeldMineral();
                     state = State.Delivering;
                 }
                 break;
@@ -86,6 +88,7 @@ public class Worker : MonoBehaviour
                     if (reachedDestination)
                     {
                         Base.instance.DepositMinerals(mineralsHeld);
+                        destroyHeldMineral();
                         state = State.MovingToTarget;
                         return;
                     }
@@ -101,6 +104,18 @@ public class Worker : MonoBehaviour
             default:
                 throw new System.Exception("Unhandled state!");
         }
+    }
+
+    void destroyHeldMineral()
+    {
+        var heldMineral = transform.GetChild(0);
+        GameObject.Destroy(heldMineral.gameObject);
+    }
+
+    void instantiateHeldMineral()
+    {
+        var position = transform.position + (Vector3.right * 0.75f);
+        GameObject.Instantiate(heldMineralPrefab, position, Quaternion.identity, transform);
     }
 
     void findNearestBase()

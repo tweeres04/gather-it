@@ -20,7 +20,6 @@ https://tweeres04.github.io/gather-it/
 - High scores?
 - Add more control to the workers?
   - Maybe not, no direct control is a fun constraint
-- Show a mineral being held when delivering
 - Show what level each upgrade is at
 - Collapse upgrades into one great upgrade?
   - Would be in line with the focus on simplicity
@@ -40,6 +39,8 @@ https://tweeres04.github.io/gather-it/
 
 # Done
 
+- Fix bug where you can't click build worker
+- Show a mineral being held when delivering ✅
 - [Build bases](bases.md) ✅
 - Worker upgrades ✅
   - Increased speed ✅
