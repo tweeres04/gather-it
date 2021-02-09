@@ -12,7 +12,8 @@ public class Shop : MonoBehaviour
     private State state = State.Normal;
     public GameObject basePrefab;
     public Transform basesGroup;
-    private int baseCost = 150;
+    private int baseCost = 100;
+    private GameObject baseGhost;
 
     public GameObject workerPrefab;
     public Transform workersGroup;
@@ -38,11 +39,18 @@ public class Shop : MonoBehaviour
     public void EnterBaseBuildingMode()
     {
         state = State.BaseBuilding;
+        baseGhost = GameObject.Instantiate(basePrefab, basesGroup);
+        baseGhost.tag = "Untagged";
+        var renderer = baseGhost.GetComponent<Renderer>();
+        var newColor = renderer.material.color;
+        newColor.a = 0.5f;
+        renderer.material.color = newColor;
         print("base building mode");
     }
 
     public void ExitBaseBuildingMode()
     {
+        GameObject.Destroy(baseGhost);
         state = State.Normal;
         print("normal mode");
     }
@@ -54,6 +62,25 @@ public class Shop : MonoBehaviour
             Base.instance.minerals -= baseCost;
             Instantiate(basePrefab, point, Quaternion.identity, basesGroup);
             ExitBaseBuildingMode();
+        }
+    }
+
+    void Update()
+    {
+        if (state == State.BaseBuilding)
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                baseGhost.transform.position = hit.point;
+            }
+
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                ExitBaseBuildingMode();
+            }
         }
     }
 
