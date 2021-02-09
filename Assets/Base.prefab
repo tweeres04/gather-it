@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 6339187868610390536}
   - component: {fileID: 6339187868610390537}
   - component: {fileID: 6339187868610390538}
-  - component: {fileID: 8578283964089221950}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +81,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &6339187868610390538
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -94,15 +95,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8578283964089221950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339187868610390539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dae0c4c6f096f7c4c817b3ee1c6f5b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -4,6 +4,7 @@ using System.Linq;
 public class Worker : MonoBehaviour
 {
     private string workerTag = "worker";
+    private string baseTag = "base";
 
     private enum State
     {
@@ -31,6 +32,7 @@ public class Worker : MonoBehaviour
     private State state = State.Idle;
 
     public Mineral target = null;
+    private Transform nearestBase;
 
     void Awake()
     {
@@ -73,13 +75,14 @@ public class Worker : MonoBehaviour
                 {
                     var mineralsToTake = Random.Range(minGatherAmount, maxGatherAmount);
                     mineralsHeld = target.takeMinerals(mineralsToTake);
+                    findNearestBase();
                     state = State.Delivering;
                 }
                 break;
 
             case State.Delivering:
                 {
-                    var reachedDestination = MoveTo(Base.instance.transform);
+                    var reachedDestination = MoveTo(nearestBase);
                     if (reachedDestination)
                     {
                         Base.instance.DepositMinerals(mineralsHeld);
@@ -97,6 +100,21 @@ public class Worker : MonoBehaviour
                 break;
             default:
                 throw new System.Exception("Unhandled state!");
+        }
+    }
+
+    void findNearestBase()
+    {
+        var bases = GameObject.FindGameObjectsWithTag(baseTag);
+        float shortestDistance = Mathf.Infinity;
+        foreach (var currentBase in bases)
+        {
+            float distanceToBase = Vector3.Distance(transform.position, currentBase.transform.position);
+            if (distanceToBase < shortestDistance)
+            {
+                shortestDistance = distanceToBase;
+                nearestBase = currentBase.transform;
+            }
         }
     }
 

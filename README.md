@@ -12,7 +12,7 @@ https://tweeres04.github.io/gather-it/
 
 # Currently working on
 
-- [Build bases](bases.md)
+-
 
 # Possible next steps
 
@@ -40,7 +40,8 @@ https://tweeres04.github.io/gather-it/
 
 # Done
 
-- Worker upgrades
+- [Build bases](bases.md) ✅
+- Worker upgrades ✅
   - Increased speed ✅
   - Carry more at a time ✅
   - Mine faster ✅

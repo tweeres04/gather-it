@@ -3,14 +3,23 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    enum State
+    {
+        Normal,
+        BaseBuilding,
+    }
+
+    private State state = State.Normal;
+    public GameObject basePrefab;
+    public Transform basesGroup;
+    private int baseCost = 150;
+
     public GameObject workerPrefab;
     public Transform workersGroup;
     private Transform[] spawnPoints = new Transform[4];
     private Transform spawnPoint;
     private int spawnPointIndex = 0;
-
     private int workerCost = 10;
-
     private int workerSpeedCost = 50;
     private int workerGatherAmountCost = 50;
     private int workerGatherTimeCost = 50;
@@ -24,6 +33,33 @@ public class Shop : MonoBehaviour
         spawnPoints = GameObject.FindGameObjectsWithTag("spawnPoint").Select(go => go.transform).ToArray();
         spawnPoint = spawnPoints[0];
         instance = this;
+    }
+
+    public void EnterBaseBuildingMode()
+    {
+        state = State.BaseBuilding;
+        print("base building mode");
+    }
+
+    public void ExitBaseBuildingMode()
+    {
+        state = State.Normal;
+        print("normal mode");
+    }
+
+    public void BuildBase(Vector3 point)
+    {
+        if (Base.instance.minerals >= baseCost)
+        {
+            Base.instance.minerals -= baseCost;
+            Instantiate(basePrefab, point, Quaternion.identity, basesGroup);
+            ExitBaseBuildingMode();
+        }
+    }
+
+    public bool IsInBaseBuildingMode()
+    {
+        return state == State.BaseBuilding;
     }
     public void BuildWorker()
     {
