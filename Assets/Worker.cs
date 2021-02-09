@@ -114,8 +114,8 @@ public class Worker : MonoBehaviour
 
     void instantiateHeldMineral()
     {
-        var position = transform.position + (Vector3.right * 0.75f);
-        GameObject.Instantiate(heldMineralPrefab, position, Quaternion.identity, transform);
+        var heldMineral = GameObject.Instantiate(heldMineralPrefab, transform, false);
+        heldMineral.transform.localPosition = Vector3.forward * 0.7f;
     }
 
     void findNearestBase()
