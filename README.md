@@ -16,6 +16,13 @@ https://tweeres04.github.io/gather-it/
 
 # Possible next steps
 
+- Make upgrades more satisfying
+  - Show a little circular timer for gather time?
+  - Show a little number for how many minerals are picked up?
+  - Speed is already satisfying, but is there an improvement?
+    - Motion blur?
+    - Motion lines?
+  - Show what level each upgrade is at?
 - Improve AI
   - Allow for more than one worker on a mineral patch
 - Levels
@@ -39,7 +46,6 @@ https://tweeres04.github.io/gather-it/
 - High scores?
 - Add more control to the workers?
   - Maybe not, no direct control is a fun constraint
-- Show what level each upgrade is at
 - Collapse upgrades into one great upgrade?
   - Would be in line with the focus on simplicity
 
