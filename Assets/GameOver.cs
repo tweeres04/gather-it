@@ -22,6 +22,7 @@ public class GameOver : MonoBehaviour
 
     public static void PlayAgain()
     {
+        Worker.resetUpgrades();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Linq;
 
+static class InitialValues
+{
+    public static float speed = 5f;
+    public static float gatherTime = 3f;
+    public static int minGatherAmount = 1;
+    public static int maxGatherAmount = 5;
+}
+
 public class Worker : MonoBehaviour
 {
     private static string workerTag = "worker";
@@ -34,6 +42,14 @@ public class Worker : MonoBehaviour
 
     public Mineral target = null;
     private Transform nearestBase;
+
+    public static void resetUpgrades()
+    {
+        speed = InitialValues.speed;
+        gatherTime = InitialValues.gatherTime;
+        minGatherAmount = InitialValues.minGatherAmount;
+        maxGatherAmount = InitialValues.maxGatherAmount;
+    }
 
     void Awake()
     {
