@@ -5,8 +5,7 @@ static class InitialValues
 {
     public static float speed = 5f;
     public static float gatherTime = 3f;
-    public static int minGatherAmount = 1;
-    public static int maxGatherAmount = 5;
+    public static int gatherAmount = 3;
 }
 
 public class Worker : MonoBehaviour
@@ -23,18 +22,17 @@ public class Worker : MonoBehaviour
     }
 
     private float turnSpeed = 5f;
-    private static float speed = 5f;
+    private static float speed = InitialValues.speed;
     private static float speedUpgradeAmount = 2.5f;
     private Color startColor;
     private bool isSelected;
     private bool isHovered;
-    private static float gatherTime = 3f;
+    private static float gatherTime = InitialValues.gatherTime;
     private static float gatherTimeUpgradeFactor = 0.25f;
     private float gatherCountdown = 0f;
 
     private int mineralsHeld = 0;
-    private static int minGatherAmount = 1;
-    private static int maxGatherAmount = 5;
+    private static int gatherAmount = InitialValues.gatherAmount;
     private static int gatherUpgradeAmount = 1;
     public GameObject heldMineralPrefab;
 
@@ -47,8 +45,7 @@ public class Worker : MonoBehaviour
     {
         speed = InitialValues.speed;
         gatherTime = InitialValues.gatherTime;
-        minGatherAmount = InitialValues.minGatherAmount;
-        maxGatherAmount = InitialValues.maxGatherAmount;
+        gatherAmount = InitialValues.gatherAmount;
     }
 
     void Awake()
@@ -91,8 +88,7 @@ public class Worker : MonoBehaviour
                 gatherCountdown -= Time.deltaTime;
                 if (gatherCountdown <= 0f)
                 {
-                    var mineralsToTake = Random.Range(minGatherAmount, maxGatherAmount);
-                    mineralsHeld = target.takeMinerals(mineralsToTake);
+                    mineralsHeld = target.takeMinerals(gatherAmount);
                     findNearestBase();
                     instantiateHeldMineral();
                     state = State.Delivering;
@@ -214,8 +210,7 @@ public class Worker : MonoBehaviour
 
     public static void UpgradeGatherAmount()
     {
-        minGatherAmount += gatherUpgradeAmount;
-        maxGatherAmount += gatherUpgradeAmount;
+        gatherAmount += gatherUpgradeAmount;
     }
 
     public static void UpgradeGatherTime()

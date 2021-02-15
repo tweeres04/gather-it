@@ -7,7 +7,7 @@ public class Mineral : MonoBehaviour
     private string workerTag = "worker";
     public static string mineralTag = "mineral";
 
-    public int minerals;
+    public int minerals = 15;
 
     public static IEnumerable<Mineral> findAllMinerals()
     {
@@ -38,17 +38,5 @@ public class Mineral : MonoBehaviour
             Destroy(gameObject);
         }
         return mineralsTaken;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        minerals = Random.Range(10, 20);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
