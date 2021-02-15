@@ -23,6 +23,7 @@ https://tweeres04.github.io/gather-it/
     - Motion blur?
     - Motion lines?
   - Show what level each upgrade is at?
+- High scores?
 - Improve AI
   - Allow for more than one worker on a mineral patch
 - Levels
@@ -43,7 +44,6 @@ https://tweeres04.github.io/gather-it/
 - Different types of resources?
   - How do you prioritize one over the other?
   - Different worker types collect different resources?
-- High scores?
 - Add more control to the workers?
   - Maybe not, no direct control is a fun constraint
 - Collapse upgrades into one great upgrade?
