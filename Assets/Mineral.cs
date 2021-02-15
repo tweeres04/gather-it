@@ -7,7 +7,7 @@ public class Mineral : MonoBehaviour
     private string workerTag = "worker";
     public static string mineralTag = "mineral";
 
-    public int minerals = 15;
+    private int minerals = 15;
 
     public static IEnumerable<Mineral> findAllMinerals()
     {

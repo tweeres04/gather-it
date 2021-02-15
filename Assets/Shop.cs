@@ -45,14 +45,12 @@ public class Shop : MonoBehaviour
         var newColor = renderer.material.color;
         newColor.a = 0.5f;
         renderer.material.color = newColor;
-        print("base building mode");
     }
 
     public void ExitBaseBuildingMode()
     {
         GameObject.Destroy(baseGhost);
         state = State.Normal;
-        print("normal mode");
     }
 
     public void BuildBase(Vector3 point)
